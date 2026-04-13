@@ -17,7 +17,7 @@ val junitVersion = "5.12.1"
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(25)
+        languageVersion = JavaLanguageVersion.of(23)
     }
 }
 
@@ -32,7 +32,7 @@ application {
 
 javafx {
     version = "21.0.6"
-    modules = listOf("javafx.controls", "javafx.fxml", "javafx.web", "javafx.swing", "javafx.media")
+    modules = listOf("javafx.controls", "javafx.fxml", "javafx.swing", "javafx.media")
 }
 
 dependencies {
@@ -47,10 +47,6 @@ dependencies {
     implementation("org.kordamp.bootstrapfx:bootstrapfx-core:0.4.0")
     implementation("eu.hansolo:tilesfx:21.0.9") {
         exclude(group = "org.openjfx")
-    }
-    implementation("com.github.almasb:fxgl:17.3") {
-        exclude(group = "org.openjfx")
-        exclude(group = "org.jetbrains.kotlin")
     }
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
