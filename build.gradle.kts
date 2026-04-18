@@ -27,7 +27,7 @@ tasks.withType<JavaCompile> {
 
 application {
     mainModule.set("com.oop.voyage.project_voyage")
-    mainClass.set("com.oop.voyage.project_voyage.HelloApplication")
+    mainClass.set("com.oop.voyage.project_voyage.Launcher")
 }
 
 javafx {
