@@ -1,0 +1,65 @@
+.root {
+    -fx-font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    -fx-background-color: #0d0d1a;
+}
+
+/* Full-screen gradient background */
+.bg-gradient {
+    -fx-background-color: linear-gradient(
+            from 0% 0% to 100% 100%,
+            #0d0d1a 0%,
+            #141428 25%,
+            #2121a8 70%,
+            #0f1035 100%
+    );
+    -fx-min-width:  100000;
+    -fx-min-height: 100000;
+}
+
+.start-root {
+    -fx-background-color: transparent;
+}
+
+.start-content {
+    -fx-alignment: CENTER;
+    -fx-spacing: 0;
+    -fx-padding: 0 0 20 0;
+}
+
+/* ── Logo / Title ── */
+.logo-section {
+    -fx-alignment: CENTER;
+    -fx-spacing: 8;
+    -fx-padding: 0 0 24 0;
+}
+
+.logo-icon {
+    -fx-font-size: 100px;
+    -fx-effect: dropshadow(gaussian, #fbbf24, 15, 0.5, 0, 0);
+}
+
+.app-title {
+    -fx-font-size: 60px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #e4d6d6;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.55), 10, 0, 0, 3);
+}
+
+.app-tagline {
+    -fx-font-size: 15px;
+    -fx-text-fill: rgb(43, 255, 0);
+    -fx-font-style: italic;
+    -fx-font-weight: bold;
+}
+
+.section-divider {
+    -fx-opacity: 3;
+    -fx-padding: 0 0 0 0;
+}
+
+/*Footer*/
+.footer-label {
+    -fx-font-size: 12px;
+    -fx-text-fill: rgb(255, 208, 0);
+    -fx-padding: 12 0 0 0;
+}

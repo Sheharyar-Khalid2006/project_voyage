@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<StackPane
+        xmlns:fx="http://javafx.com/fxml/1"
+        fx:controller="com.oop.voyage.project_voyage.StartingScreen"
+        fx:id="rootPane"
+        styleClass="start-root">
+
+    <Pane styleClass="bg-gradient" />
+
+    <VBox fx:id="contentBox" styleClass="start-content" alignment="CENTER">
+
+        <VBox styleClass="logo-section" alignment="CENTER">
+            <Label fx:id="logoIconLabel" text="🚗" styleClass="logo-icon" />
+            <Label fx:id="appTitleLabel" text="Voyage" styleClass="app-title"   />
+            <Label text="Let us take care of your travel hassle" styleClass="app-tagline" />
+        </VBox>
+
+        <Separator styleClass="section-divider" maxWidth="360" />
+
+        <Label text="© 2026 Voyage  •  Safe and Hassle Free Travels Await"
+               styleClass="footer-label" />
+
+    </VBox>
+</StackPane>
