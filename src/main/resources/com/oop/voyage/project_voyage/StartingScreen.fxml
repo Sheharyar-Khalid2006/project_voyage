@@ -14,6 +14,7 @@
         xmlns:fx="http://javafx.com/fxml/1"
         fx:controller="com.oop.voyage.project_voyage.StartingScreen"
         fx:id="rootPane"
+        stylesheets="@Styles.css"
         styleClass="start-root">
 
     <Pane styleClass="bg-gradient" />
@@ -28,20 +29,21 @@
             <Label text="Let us take care of your travel hassle" styleClass="app-tagline" />
         </VBox>
 
-        <HBox fx:id="cardsRow" alignment="CENTER">
+        <HBox fx:id="cardsRow" styleClass="cards-row" alignment="CENTER">
             <!-- The CSS classes/IDs for Driver are named but not implemented yet in CSS-->
             <VBox
                     fx:id="driverCard"
+                    styleClass="role-card, driver-card"
                     alignment="CENTER"
                     onMouseClicked="#onDriverCardClicked"
                     onMouseEntered="#onDriverHover"
                     onMouseExited="#onDriverUnhover">
-                <padding><Insets top="44" right="54" bottom="36" left="54"/></padding>
+                <padding><Insets top="40" right="55" bottom="35" left="55"/></padding>
                 <Label text="🚘" />
-                <Label text="Driver" />
-                <Label text="Offer rides &amp; earn" wrapText="true" textAlignment="CENTER" />
-                <Region VBox.vgrow="ALWAYS" minHeight="14" />
-                <Button text="Select →" mouseTransparent="true" />
+                <Label text="Driver" styleClass="card-role-title" />
+                <Label text="Offer rides &amp; earn" wrapText="true" textAlignment="CENTER" styleClass="card-role-sub" />
+                <Region VBox.vgrow="ALWAYS" minHeight="15" />
+                <Button text="Select →" styleClass="card-btn, driver-btn" mouseTransparent="true" />
             </VBox>
 
             <Region minWidth="60" HBox.hgrow="NEVER" />
@@ -49,16 +51,17 @@
             <!-- The CSS classes/IDs for passenger are named but not implemented yet in CSS-->
             <VBox
                     fx:id="passengerCard"
+                    styleClass="role-card, passenger-card"
                     alignment="CENTER"
                     onMouseClicked="#onPassengerCardClicked"
                     onMouseEntered="#onPassengerHover"
                     onMouseExited="#onPassengerUnhover">
-                <padding><Insets top="44" right="54" bottom="36" left="54"/></padding>
-                <Label text="🧳" />
-                <Label text="Passenger" />
-                <Label text="Book a ride &amp; travel" wrapText="true" textAlignment="CENTER" />
-                <Region VBox.vgrow="ALWAYS" minHeight="14" />
-                <Button text="Select →" mouseTransparent="true" />
+                <padding><Insets top="40" right="55" bottom="35" left="55"/></padding>
+                <Label text="🧳" styleClass="card-emoji" />
+                <Label text="Passenger" styleClass="card-role-sub" />
+                <Label text="Book a ride &amp; travel" wrapText="true" styleClass="card-role-sub" textAlignment="CENTER" />
+                <Region VBox.vgrow="ALWAYS" minHeight="15" />
+                <Button text="Select →" styleClass="card-btn, passenger-btn" mouseTransparent="true" />
             </VBox>
         </HBox>
 
