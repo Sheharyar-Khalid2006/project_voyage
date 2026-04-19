@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
@@ -13,6 +17,8 @@
         styleClass="start-root">
 
     <Pane styleClass="bg-gradient" />
+    <Pane StackPane.alignment="TOP_LEFT" />
+    <Pane StackPane.alignment="BOTTOM_RIGHT"/>
 
     <VBox fx:id="contentBox" styleClass="start-content" alignment="CENTER">
 
@@ -21,6 +27,40 @@
             <Label fx:id="appTitleLabel" text="Voyage" styleClass="app-title"   />
             <Label text="Let us take care of your travel hassle" styleClass="app-tagline" />
         </VBox>
+
+        <HBox fx:id="cardsRow" alignment="CENTER">
+            <!-- The CSS classes/IDs for Driver are named but not implemented yet in CSS-->
+            <VBox
+                    fx:id="driverCard"
+                    alignment="CENTER"
+                    onMouseClicked="#onDriverCardClicked"
+                    onMouseEntered="#onDriverHover"
+                    onMouseExited="#onDriverUnhover">
+                <padding><Insets top="44" right="54" bottom="36" left="54"/></padding>
+                <Label text="🚘" />
+                <Label text="Driver" />
+                <Label text="Offer rides &amp; earn" wrapText="true" textAlignment="CENTER" />
+                <Region VBox.vgrow="ALWAYS" minHeight="14" />
+                <Button text="Select →" mouseTransparent="true" />
+            </VBox>
+
+            <Region minWidth="60" HBox.hgrow="NEVER" />
+
+            <!-- The CSS classes/IDs for passenger are named but not implemented yet in CSS-->
+            <VBox
+                    fx:id="passengerCard"
+                    alignment="CENTER"
+                    onMouseClicked="#onPassengerCardClicked"
+                    onMouseEntered="#onPassengerHover"
+                    onMouseExited="#onPassengerUnhover">
+                <padding><Insets top="44" right="54" bottom="36" left="54"/></padding>
+                <Label text="🧳" />
+                <Label text="Passenger" />
+                <Label text="Book a ride &amp; travel" wrapText="true" textAlignment="CENTER" />
+                <Region VBox.vgrow="ALWAYS" minHeight="14" />
+                <Button text="Select →" mouseTransparent="true" />
+            </VBox>
+        </HBox>
 
         <Separator styleClass="section-divider" maxWidth="360" />
 
