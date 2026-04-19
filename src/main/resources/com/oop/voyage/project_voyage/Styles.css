@@ -52,6 +52,30 @@
     -fx-font-weight: bold;
 }
 
+.choice-prompt {
+    -fx-font-size: 18px;
+    -fx-text-fill: rgba(210, 210, 240, 0.82);
+    -fx-font-weight: 600;
+    -fx-padding: 22 0 26 0;
+}
+
+.cards-row {
+    -fx-alignment: CENTER;
+    -fx-spacing: 70;
+    -fx-padding: 0 0 28 0;
+}
+
+.role-card {
+    -fx-alignment: CENTER;
+    -fx-spacing: 12;
+    -fx-background-radius: 22;
+    -fx-border-radius: 22;
+    -fx-border-width: 1.5;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.55), 24, 0.08, 0, 8);
+}
+
+
 .driver-card {
     -fx-background-color: linear-gradient(
             from 0% 0% to 100% 100%,
@@ -79,6 +103,22 @@
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.30), 6, 0, 0, 2);
 }
 
+.card-role-title {
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.30), 4, 0, 0, 1);
+}
+
+.card-role-sub {
+    -fx-font-size: 13px;
+    -fx-text-fill: rgba(255, 255, 255, 0.80);
+    -fx-wrap-text: true;
+    -fx-text-alignment: CENTER;
+    -fx-alignment: CENTER;
+    -fx-padding: 2 0 0 0;
+}
+
 .card-btn {
     -fx-background-radius: 30;
     -fx-border-radius: 30;
@@ -91,6 +131,10 @@
     -fx-text-fill: white;
     -fx-border-color: rgba(255, 255, 255, 0.50);
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.20), 6, 0, 0, 2);
+}
+
+.driver-btn:hover, .passenger-btn:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.30);
 }
 
 .section-divider {
