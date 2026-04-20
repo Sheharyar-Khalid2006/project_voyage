@@ -18,14 +18,12 @@
         styleClass="start-root">
 
     <Pane styleClass="bg-gradient" />
-    <Pane StackPane.alignment="TOP_LEFT" />
-    <Pane StackPane.alignment="BOTTOM_RIGHT"/>
 
     <VBox fx:id="contentBox" styleClass="start-content" alignment="CENTER">
 
         <VBox styleClass="logo-section" alignment="CENTER">
             <Label fx:id="logoIconLabel" text="🚗" styleClass="logo-icon" />
-            <Label fx:id="appTitleLabel" text="Voyage" styleClass="app-title"   />
+            <Label fx:id="appTitleLabel" text="Voyage" styleClass="app-title" />
             <Label text="Let us take care of your travel hassle" styleClass="app-tagline" />
         </VBox>
 
@@ -58,7 +56,7 @@
                     onMouseExited="#onPassengerUnhover">
                 <padding><Insets top="40" right="55" bottom="35" left="55"/></padding>
                 <Label text="🧳" styleClass="card-emoji" />
-                <Label text="Passenger" styleClass="card-role-sub" />
+                <Label text="Passenger" styleClass="card-role-title" />
                 <Label text="Book a ride &amp; travel" wrapText="true" styleClass="card-role-sub" textAlignment="CENTER" />
                 <Region VBox.vgrow="ALWAYS" minHeight="15" />
                 <Button text="Select →" styleClass="card-btn, passenger-btn" mouseTransparent="true" />
