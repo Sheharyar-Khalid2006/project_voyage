@@ -1,10 +1,13 @@
 package com.oop.voyage.project_voyage;
 
+import javafx.animation.*;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.animation.Interpolator;
 import javafx.animation.ScaleTransition;
 import javafx.geometry.Rectangle2D;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -12,6 +15,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Screen;
 import javafx.util.Duration;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -25,9 +29,13 @@ public class StartingScreen implements Initializable {
     @FXML private Label     logoIconLabel;
     @FXML private Label     appTitleLabel;
 
+    private static final String ROLE_DRIVER    = "DRIVER";
+    private static final String ROLE_PASSENGER = "PASSENGER";
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         responsiveSizes();
+        playEntryAnimation();
     }
 
     private void responsiveSizes() {
@@ -53,14 +61,33 @@ public class StartingScreen implements Initializable {
         cardsRow.setSpacing(gap);
     }
 
+    private void playEntryAnimation() {
+        contentBox.setOpacity(0);
+        contentBox.setTranslateY(50);
+
+        FadeTransition     fade  = new FadeTransition(Duration.millis(750), contentBox);
+        TranslateTransition slide = new TranslateTransition(Duration.millis(750), contentBox);
+
+        fade.setFromValue(0);
+        fade.setToValue(1);
+
+        slide.setFromY(50);
+        slide.setToY(0);
+        slide.setInterpolator(Interpolator.EASE_OUT);
+
+        ParallelTransition entry = new ParallelTransition(fade, slide);
+        entry.setDelay(Duration.millis(120));
+        entry.play();
+    }
+
     @FXML
     private void onDriverCardClicked(MouseEvent e) {
-        System.out.println("Driver selected - Navigation pending");
+
     }
 
     @FXML
     private void onPassengerCardClicked(MouseEvent e) {
-        System.out.println("Hello Passenger - Navigation pending");
+
     }
 
     @FXML
@@ -89,6 +116,25 @@ public class StartingScreen implements Initializable {
         st.setToY(factor);
         st.setInterpolator(Interpolator.EASE_BOTH);
         st.play();
+    }
+
+    private void loadLoginScreen(String role) {
+        try {
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource("/com/travel/fxml/LoginScreen.fxml"));
+
+            Scene scene = new Scene(loader.load());
+            scene.getStylesheets().add(
+                    getClass().getResource("/com/travel/css/styles.css").toExternalForm());
+
+            LoginScreen ctrl = loader.getController();
+            ctrl.initRole(role);
+
+            Voyage.primaryStage.setScene(scene);
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 
     private static double clamp(double val, double min, double max) {
