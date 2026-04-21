@@ -99,12 +99,12 @@
 }
 
 .card-emoji {
-    -fx-font-size: 54px;
+    -fx-font-size: 50px;
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.30), 6, 0, 0, 2);
 }
 
 .card-role-title {
-    -fx-font-size: 22px;
+    -fx-font-size: 20px;
     -fx-font-weight: bold;
     -fx-text-fill: white;
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.30), 4, 0, 0, 1);
@@ -116,7 +116,7 @@
     -fx-wrap-text: true;
     -fx-text-alignment: CENTER;
     -fx-alignment: CENTER;
-    -fx-padding: 2 0 0 0;
+    -fx-padding: 1 0 0 0;
 }
 
 .card-btn {

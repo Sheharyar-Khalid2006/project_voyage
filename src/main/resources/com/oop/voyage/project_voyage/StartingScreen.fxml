@@ -10,6 +10,9 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+
 <StackPane
         xmlns:fx="http://javafx.com/fxml/1"
         fx:controller="com.oop.voyage.project_voyage.StartingScreen"
@@ -36,8 +39,8 @@
                     onMouseClicked="#onDriverCardClicked"
                     onMouseEntered="#onDriverHover"
                     onMouseExited="#onDriverUnhover">
-                <padding><Insets top="40" right="55" bottom="35" left="55"/></padding>
-                <Label text="🚘" />
+                <padding><Insets top="40" right="30" bottom="30" left="30"/></padding>
+                <Label text="🚘" styleClass="card-emoji" />
                 <Label text="Driver" styleClass="card-role-title" />
                 <Label text="Offer rides &amp; earn" wrapText="true" textAlignment="CENTER" styleClass="card-role-sub" />
                 <Region VBox.vgrow="ALWAYS" minHeight="15" />
@@ -54,8 +57,10 @@
                     onMouseClicked="#onPassengerCardClicked"
                     onMouseEntered="#onPassengerHover"
                     onMouseExited="#onPassengerUnhover">
-                <padding><Insets top="40" right="55" bottom="35" left="55"/></padding>
-                <Label text="🧳" styleClass="card-emoji" />
+                <padding><Insets top="40" right="30" bottom="30" left="30"/></padding>
+                <ImageView fitWidth="60" fitHeight="60" preserveRatio="true">
+                        <Image url="@passenger.png" />
+                </ImageView>
                 <Label text="Passenger" styleClass="card-role-title" />
                 <Label text="Book a ride &amp; travel" wrapText="true" styleClass="card-role-sub" textAlignment="CENTER" />
                 <Region VBox.vgrow="ALWAYS" minHeight="15" />

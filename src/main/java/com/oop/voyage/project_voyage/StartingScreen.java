@@ -41,7 +41,7 @@ public class StartingScreen implements Initializable {
     private void responsiveSizes() {
         Rectangle2D screen = Screen.getPrimary().getVisualBounds();
 
-        double cardW = clamp(screen.getWidth()  * 0.15, 200, 320);
+        double cardW = clamp(screen.getWidth()  * 0.25, 200, 320);
         double cardH = clamp(screen.getHeight() * 0.40, 260, 420);
 
         for (VBox card : new VBox[]{driverCard, passengerCard}) {
@@ -121,11 +121,11 @@ public class StartingScreen implements Initializable {
     private void loadLoginScreen(String role) {
         try {
             FXMLLoader loader = new FXMLLoader(
-                    getClass().getResource("/com/travel/fxml/LoginScreen.fxml"));
+                    getClass().getResource("/com/oop/voyage/project_voyage/LoginScreen.fxml"));
 
             Scene scene = new Scene(loader.load());
             scene.getStylesheets().add(
-                    getClass().getResource("/com/travel/css/styles.css").toExternalForm());
+                    getClass().getResource("/com/oop/voyage/project_voyage/styles.css").toExternalForm());
 
             LoginScreen ctrl = loader.getController();
             ctrl.initRole(role);
