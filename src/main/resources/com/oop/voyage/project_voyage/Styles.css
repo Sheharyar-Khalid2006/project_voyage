@@ -159,8 +159,8 @@
     -fx-background-color:
             linear-gradient(
                     from 0% 0% to 100% 100%,
-                    rgba(30, 30, 70, 0.75) 0%,
-                    rgba(20, 20, 55, 0.80) 100%
+                    rgba(50, 50, 136, 0.75) 0%,
+                    rgba(20, 20, 96, 0.8) 100%
             );
     -fx-background-radius: 10;
     -fx-border-radius: 10;
@@ -172,9 +172,9 @@
 }
 
 .form-role-title {
-    -fx-font-size: 24px;
+    -fx-font-size: 40px;
     -fx-font-weight: bold;
-    -fx-text-fill: white;
+    -fx-text-fill: #ffcdcd;
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.40), 6, 0, 0, 2);
 }
 
@@ -183,4 +183,34 @@
     -fx-font-weight: bold;
     -fx-text-fill: rgba(200, 200, 240, 0.80);
     -fx-letter-spacing: 0.5;
+}
+
+.form-field {
+    -fx-background-color: rgba(255, 255, 255, 0.1);
+    -fx-border-color: rgba(255, 255, 255, 0.2);
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-border-width: 1.5;
+    -fx-text-fill: #c1c1c1;
+    -fx-prompt-text-fill: rgba(180, 180, 200, 0.5);
+    -fx-padding: 10 15 10 15;
+    -fx-font-size: 15px;
+    -fx-pref-height: 50px;
+    -fx-highlight-fill: rgba(100, 100, 240, 0.5);
+}
+
+.continue-btn {
+    -fx-background-color: linear-gradient(
+            from 0% 0% to 100% 0%,
+            #f0a019,
+            #fbbf24
+    );
+    -fx-text-fill: #1a1a2e;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 12;
+    -fx-border-radius: 12;
+    -fx-padding: 13 0 13 0;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgb(255, 175, 0), 15, 0.20, 0, 5);
 }
