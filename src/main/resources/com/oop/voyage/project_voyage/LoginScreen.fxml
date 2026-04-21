@@ -1,5 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.oop.voyage.project_voyage.LoginScreen">
-</AnchorPane>
+<StackPane
+        xmlns:fx="http://javafx.com/fxml/1"
+        fx:controller="com.oop.voyage.project_voyage.LoginScreen"
+        fx:id="rootPane"
+        styleClass="login-root">
+
+    <VBox fx:id="formCard" styleClass="form-card" alignment="TOP_CENTER" spacing="16">
+        <padding><Insets top="40" right="56" bottom="40" left="56"/></padding>
+
+        <Label text="Login" styleClass="form-role-title" />
+
+        <Label text="CNIC" styleClass="field-label" />
+        <TextField fx:id="cnicField"
+                   promptText="e.g. 35202-1234567-1"
+                   styleClass="form-field" />
+
+        <Label text="Phone Number" styleClass="field-label" />
+        <TextField fx:id="phoneField"
+                   promptText="e.g. 0300-1234567"
+                   styleClass="form-field" />
+
+        <Label text="Gmail (Optional)" styleClass="field-label" />
+        <TextField fx:id="gmailField"
+                   promptText="yourname@gmail.com"
+                   styleClass="form-field" />
+
+        <Button text="Continue →" styleClass="continue-btn"
+                maxWidth="Infinity" onAction="#onContinueClicked">
+            <VBox.margin><Insets top="12"/></VBox.margin>
+        </Button>
+    </VBox>
+</StackPane>

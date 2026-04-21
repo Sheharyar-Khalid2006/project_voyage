@@ -82,12 +82,12 @@ public class StartingScreen implements Initializable {
 
     @FXML
     private void onDriverCardClicked(MouseEvent e) {
-
+        loadLoginScreen(ROLE_DRIVER);
     }
 
     @FXML
     private void onPassengerCardClicked(MouseEvent e) {
-
+        loadLoginScreen(ROLE_PASSENGER);
     }
 
     @FXML
