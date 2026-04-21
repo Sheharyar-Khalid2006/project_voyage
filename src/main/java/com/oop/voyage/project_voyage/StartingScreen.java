@@ -123,7 +123,9 @@ public class StartingScreen implements Initializable {
             FXMLLoader loader = new FXMLLoader(
                     getClass().getResource("/com/oop/voyage/project_voyage/LoginScreen.fxml"));
 
-            Scene scene = new Scene(loader.load());
+            Scene scene = new Scene(loader.load(),
+                    Voyage.primaryStage.getWidth(),
+                    Voyage.primaryStage.getHeight());
             scene.getStylesheets().add(
                     getClass().getResource("/com/oop/voyage/project_voyage/styles.css").toExternalForm());
 
