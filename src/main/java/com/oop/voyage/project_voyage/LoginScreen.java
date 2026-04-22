@@ -110,6 +110,18 @@ public class LoginScreen implements Initializable {
 
         @FXML
     private void onContinueClicked() {
-        //Validation and Navigation will be added later
+            String cnic  = cnicField.getText().trim();
+            String phone = phoneField.getText().trim();
+            String gmail = gmailField.getText().trim();
+
+            if (ROLE_DRIVER.equals(role)) {
+                String carType = carTypeCombo.getValue();
+                String plate   = plateField.getText().trim().toUpperCase();
+                System.out.printf("[DRIVER]  cnic=%s  phone=%s  gmail=%s  car=%s  plate=%s%n",
+                        cnic, phone, gmail, carType, plate);
+            } else {
+                System.out.printf("[PASSENGER]  cnic=%s  phone=%s  gmail=%s%n",
+                        cnic, phone, gmail);
+            }
     }
 }
