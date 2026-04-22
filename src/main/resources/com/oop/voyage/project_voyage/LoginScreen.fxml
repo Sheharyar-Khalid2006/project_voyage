@@ -26,16 +26,22 @@
                text="Enter your details to continue"
                styleClass="form-subtitle" />
 
-
-        <Label text="CNIC" styleClass="field-label" />
-        <TextField fx:id="cnicField"
-                   promptText="e.g. 35202-1234567-1"
-                   styleClass="form-field" />
-
-        <Label text="Phone Number" styleClass="field-label" />
-        <TextField fx:id="phoneField"
-                   promptText="e.g. 0300-1234567"
-                   styleClass="form-field" />
+        <HBox spacing="16">
+            <VBox spacing="6" HBox.hgrow="ALWAYS">
+                <Label text="CNIC" styleClass="field-label" />
+                <TextField fx:id="cnicField"
+                           promptText="e.g. 35202-1234567-1"
+                           styleClass="form-field"
+                           maxWidth="Infinity" />
+            </VBox>
+            <VBox spacing="6" HBox.hgrow="ALWAYS">
+                <Label text="Phone Number" styleClass="field-label" />
+                <TextField fx:id="phoneField"
+                           promptText="e.g. 0300-1234567"
+                           styleClass="form-field"
+                           maxWidth="Infinity" />
+            </VBox>
+        </HBox>
 
         <Label text="Gmail (Optional)" styleClass="field-label" />
         <TextField fx:id="gmailField"
@@ -50,7 +56,7 @@
                 <VBox.margin><Insets top="10" bottom="18"/></VBox.margin>
             </Separator>
 
-            <Label text="🚘   Vehicle Information" styleClass="section-header" />
+            <Label text="🚘 Vehicle Information" styleClass="section-header" />
 
             <Label text="Car Type" styleClass="field-label" />
             <ComboBox fx:id="carTypeCombo"
