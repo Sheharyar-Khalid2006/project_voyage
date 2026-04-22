@@ -4,6 +4,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
@@ -12,11 +14,25 @@ import java.util.ResourceBundle;
 
 public class LoginScreen implements Initializable {
 
+    public static final String ROLE_DRIVER    = "DRIVER";
+    public static final String ROLE_PASSENGER = "PASSENGER";
+
     public StackPane rootPane;
     @FXML private VBox      formCard;
+
+    //Labels
+    @FXML private Label roleIconLabel;
+    @FXML private Label roleTitleLabel;
+    @FXML private Label roleSubtitleLabel;
+
+    //Fields
     @FXML private TextField cnicField;
     @FXML private TextField phoneField;
     @FXML private TextField gmailField;
+
+    @FXML private VBox driverSection;
+
+    private String role;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -24,6 +40,30 @@ public class LoginScreen implements Initializable {
     }
 
     public void initRole(String role) {
+        this.role = role;
+
+        if (ROLE_DRIVER.equals(role)) {
+            roleIconLabel.setText("🚘");
+            roleTitleLabel.setText("Driver Login");
+            roleSubtitleLabel.setText("Enter your details to start offering rides");
+            driverSection.setVisible(true);
+            driverSection.setManaged(true);
+        } else {
+            roleIconLabel.setText("");
+            Image passengerIcon = new Image(getClass().getResourceAsStream("/com/oop/voyage/project_voyage/passenger.png"));
+            ImageView imageView = new ImageView(passengerIcon);
+
+            // Adjust size to match your UI needs
+            imageView.setFitHeight(40);
+            imageView.setFitWidth(40);
+            imageView.setPreserveRatio(true);
+
+            roleIconLabel.setGraphic(imageView);
+            roleTitleLabel.setText("Passenger Login");
+            roleSubtitleLabel.setText("Enter your details to start booking rides");
+            driverSection.setVisible(false);
+            driverSection.setManaged(false);
+        }
     }
 
         @FXML
