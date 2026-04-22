@@ -2,6 +2,7 @@ package com.oop.voyage.project_voyage;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -31,12 +32,14 @@ public class LoginScreen implements Initializable {
     @FXML private TextField gmailField;
 
     @FXML private VBox driverSection;
+    @FXML private ComboBox<String> carTypeCombo;
+    @FXML private TextField        plateField;
 
     private String role;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // nothing to set up yet
+        setupCarTypes();
     }
 
     public void initRole(String role) {
@@ -66,7 +69,19 @@ public class LoginScreen implements Initializable {
         }
     }
 
+    private void setupCarTypes() {
+        carTypeCombo.getItems().addAll(
+                "Sedan / Toyota (5 seater)",
+                "SUV / Crossover (7 seater)",
+                "Van / Minivan",
+                "Mazda / Bus",
+                "Motorcycle",
+                "DoubleDecker Bus"
+        );
+    }
+
         @FXML
     private void onContinueClicked() {
+        //Validation and Navigation will be added later
     }
 }
