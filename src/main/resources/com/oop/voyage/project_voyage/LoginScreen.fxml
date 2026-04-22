@@ -40,6 +40,9 @@
                    promptText="yourname@gmail.com"
                    styleClass="form-field" />
 
+        <!-- Driver-only section — toggled by initRole() -->
+        <VBox fx:id="driverSection" visible="false" managed="false" />
+
         <Button text="Continue →" styleClass="continue-btn"
                 maxWidth="Infinity" onAction="#onContinueClicked">
             <VBox.margin><Insets top="12"/></VBox.margin>

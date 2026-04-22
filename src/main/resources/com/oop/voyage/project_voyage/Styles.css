@@ -214,3 +214,18 @@
     -fx-cursor: hand;
     -fx-effect: dropshadow(gaussian, rgb(255, 175, 0), 15, 0.20, 0, 5);
 }
+
+.role-badge-row {
+    -fx-padding: 0 0 4px 0;
+}
+
+.form-role-icon {
+    -fx-font-size: 35px;
+}
+
+.form-subtitle {
+    -fx-font-size: 15px;
+    -fx-text-fill: #7a83a8;
+    -fx-padding: 0 0 20px 0;
+    -fx-alignment: center;
+}
