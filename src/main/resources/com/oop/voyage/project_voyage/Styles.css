@@ -90,17 +90,6 @@
     -fx-border-color: rgba(255, 200, 120, 0.35);
 }
 
-.passenger-card {
-    -fx-background-color: linear-gradient(
-            from 0% 0% to 100% 100%,
-            #c05621 0%,
-            #dd6b20 30%,
-            #ed8936 65%,
-            #f6ad55 100%
-    );
-    -fx-border-color: rgba(147, 197, 253, 0.30);
-}
-
 .card-emoji {
     -fx-font-size: 50px;
     -fx-text-fill: #0dff00;
@@ -153,8 +142,39 @@
     -fx-padding: 12 0 0 0;
 }
 
-.login-root {
+/* For LoginScreen */
+.top-bar {
+    -fx-background-color: rgba(255,255,255,0.92);
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 8, 0, 0, 2);
+    -fx-min-height: 60px;
+    -fx-pref-height: 60px;
+}
+
+.top-logo {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2d3a8c;
+}
+
+.back-btn {
     -fx-background-color: transparent;
+    -fx-text-fill: #3b5bdb;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+    -fx-border-color: #3b5bdb;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-border-width: 2px;
+    -fx-padding: 6px 14px;
+}
+
+.login-root {
+    -fx-background-color: linear-gradient(
+            from 0% 0% to 100% 100%,
+            #1a1a5e 0%,
+            #0d0d3b 100%
+    );
 }
 
 .form-card {

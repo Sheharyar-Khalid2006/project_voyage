@@ -20,9 +20,12 @@
     <BorderPane maxWidth="Infinity" maxHeight="Infinity">
 
         <top>
-            <HBox styleClass="top-bar" alignment="CENTER_LEFT" spacing="16">
+            <HBox styleClass="top-bar"
+                  alignment="CENTER_LEFT"
+                  spacing="16"
+                  style="-fx-min-height: 60px; -fx-pref-height: 60px;">
                 <padding><Insets top="14" right="28" bottom="14" left="28"/></padding>
-                <Button text="← Back" styleClass="back-btn" onAction="#onBackClicked" />
+                <Button text="&lt;- Back" styleClass="back-btn" onAction="#onBackClicked" />
                 <Region HBox.hgrow="ALWAYS" />
                 <Label fx:id="topBadgeLabel" text="RideWave" styleClass="top-logo" />
             </HBox>
@@ -91,7 +94,7 @@
                                    styleClass="form-field plate-field" />
                     </VBox>
 
-                    <Button text="Continue →" styleClass="continue-btn"
+                    <Button text="Continue -&gt;" styleClass="continue-btn"
                             maxWidth="Infinity" onAction="#onContinueClicked">
                         <VBox.margin><Insets top="10" bottom="10"/></VBox.margin>
                     </Button>
