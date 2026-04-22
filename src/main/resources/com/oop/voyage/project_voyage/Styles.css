@@ -229,3 +229,32 @@
     -fx-padding: 0 0 20px 0;
     -fx-alignment: center;
 }
+
+.driver-section {
+    -fx-padding: 5;
+}
+
+.driver-divider {
+    -fx-opacity: 0.5;
+}
+
+.section-header {
+    -fx-font-size: 15px;
+    -fx-font-style: italic;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2d3a8c;
+    -fx-padding: 0 0 15px 0;
+}
+
+.form-combo {
+    -fx-background-radius: 5px;
+    -fx-border-radius: 10px;
+    -fx-border-color: #dde3ec;
+    -fx-border-width: 1px;
+    -fx-pref-height: 40px;
+    -fx-font-size: 15px;
+}
+
+.plate-field {
+    -fx-font-weight: bold;
+}
