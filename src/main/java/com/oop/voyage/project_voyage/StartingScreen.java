@@ -127,7 +127,7 @@ public class StartingScreen implements Initializable {
                     Voyage.primaryStage.getWidth(),
                     Voyage.primaryStage.getHeight());
             scene.getStylesheets().add(
-                    getClass().getResource("/com/oop/voyage/project_voyage/styles.css").toExternalForm());
+                    getClass().getResource("/com/oop/voyage/project_voyage/Styles.css").toExternalForm());
 
             LoginScreen ctrl = loader.getController();
             ctrl.initRole(role);

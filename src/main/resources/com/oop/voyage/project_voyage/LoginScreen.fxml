@@ -5,6 +5,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
 
 <StackPane
         xmlns:fx="http://javafx.com/fxml/1"
@@ -15,7 +16,14 @@
     <VBox fx:id="formCard" styleClass="form-card" alignment="TOP_CENTER" spacing="16">
         <padding><Insets top="40" right="56" bottom="40" left="56"/></padding>
 
-        <Label text="Login" styleClass="form-role-title" />
+        <HBox styleClass="role-badge-row" alignment="CENTER" spacing="10">
+            <Label fx:id="roleIconLabel" text="👤" styleClass="form-role-icon" />
+            <Label fx:id="roleTitleLabel" text="Login" styleClass="form-role-title" />
+        </HBox>
+        <Label fx:id="roleSubtitleLabel"
+               text="Enter your details to continue"
+               styleClass="form-subtitle" />
+
 
         <Label text="CNIC" styleClass="field-label" />
         <TextField fx:id="cnicField"

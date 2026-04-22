@@ -18,7 +18,7 @@ public class LoginScreen implements Initializable {
     public static final String ROLE_PASSENGER = "PASSENGER";
 
     public StackPane rootPane;
-    @FXML private VBox      formCard;
+    @FXML private VBox formCard;
 
     //Labels
     @FXML private Label roleIconLabel;
