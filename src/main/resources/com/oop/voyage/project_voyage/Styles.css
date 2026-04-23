@@ -90,6 +90,17 @@
     -fx-border-color: rgba(255, 200, 120, 0.35);
 }
 
+.passenger-card {
+    -fx-background-color: linear-gradient(
+            from 0% 0% to 100% 100%,
+            #c05621 0%,
+            #dd6b20 30%,
+            #ed8936 65%,
+            #f6ad55 100%
+    );
+    -fx-border-color: rgba(147, 197, 253, 0.30);
+}
+
 .card-emoji {
     -fx-font-size: 50px;
     -fx-text-fill: #0dff00;
@@ -144,7 +155,7 @@
 
 /* For LoginScreen */
 .top-bar {
-    -fx-background-color: rgba(255,255,255,0.92);
+    -fx-background-color: rgba(20, 20, 96, 0.8);
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 8, 0, 0, 2);
     -fx-min-height: 60px;
     -fx-pref-height: 60px;
@@ -153,16 +164,16 @@
 .top-logo {
     -fx-font-size: 16px;
     -fx-font-weight: bold;
-    -fx-text-fill: #2d3a8c;
+    -fx-text-fill: #ff0000;
 }
 
 .back-btn {
     -fx-background-color: transparent;
-    -fx-text-fill: #3b5bdb;
+    -fx-text-fill: #ff0000;
     -fx-font-size: 14px;
     -fx-font-weight: bold;
     -fx-cursor: hand;
-    -fx-border-color: #3b5bdb;
+    -fx-border-color: #00ff34;
     -fx-border-radius: 8px;
     -fx-background-radius: 8px;
     -fx-border-width: 2px;
@@ -205,6 +216,7 @@
     -fx-font-weight: bold;
     -fx-text-fill: rgb(255, 215, 0, 1);
     -fx-letter-spacing: 0.5;
+    -fx-padding: 0 0 3px 0;
 }
 
 .form-field {
@@ -265,7 +277,7 @@
     -fx-font-style: italic;
     -fx-font-weight: bold;
     -fx-text-fill: #0dff00;
-    -fx-padding: 0 0 15px 0;
+    -fx-padding: 0 0 5px 0;
 }
 
 .form-combo {
@@ -273,7 +285,7 @@
     -fx-border-radius: 10px;
     -fx-border-color: #dde3ec;
     -fx-border-width: 1px;
-    -fx-pref-height: 40px;
+    -fx-pref-height: 20px;
     -fx-font-size: 15px;
 }
 
