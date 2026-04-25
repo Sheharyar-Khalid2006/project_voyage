@@ -45,6 +45,26 @@
                         </VBox>
                     </HBox>
 
+                    <VBox styleClass="form-card" spacing="12">
+                        <padding><Insets top="16" right="24" bottom="16" left="24"/></padding>
+                        <Label text="🗺 Set Drop-off Destination" styleClass="section-header"/>
+                        <HBox spacing="16">
+                            <VBox spacing="5" HBox.hgrow="ALWAYS">
+                                <Label text="Destination Latitude" styleClass="field-label"/>
+                                <TextField fx:id="destLatField" promptText="e.g. 33.1620"
+                                           styleClass="form-field"/>
+                            </VBox>
+                            <VBox spacing="5" HBox.hgrow="ALWAYS">
+                                <Label text="Destination Longitude" styleClass="field-label"/>
+                                <TextField fx:id="destLngField" promptText="e.g. 73.7650"
+                                           styleClass="form-field"/>
+                            </VBox>
+                        </HBox>
+                        <!-- onSetDestination method still needs to be defined in .java file -->
+                        <Button text="Confirm Destination" onAction="#onSetDestination"
+                                styleClass="continue-btn" maxWidth="Infinity"/>
+                    </VBox>
+
                 </VBox>
             </ScrollPane>
         </center>
