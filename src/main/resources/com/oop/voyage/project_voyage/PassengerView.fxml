@@ -87,7 +87,6 @@
                                     styleClass="card-btn"/>
                         </HBox>
 
-                        <!-- onToggleProximityAlarm method still needs to be defined in .java file -->
                         <Button text="Toggle Proximity Alarm ON/OFF"
                                 onAction="#onToggleProximityAlarm"
                                 styleClass="continue-btn" maxWidth="Infinity"/>

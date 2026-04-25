@@ -60,7 +60,6 @@
                                            styleClass="form-field"/>
                             </VBox>
                         </HBox>
-                        <!-- onSetDestination method still needs to be defined in .java file -->
                         <Button text="Confirm Destination" onAction="#onSetDestination"
                                 styleClass="continue-btn" maxWidth="Infinity"/>
                     </VBox>
