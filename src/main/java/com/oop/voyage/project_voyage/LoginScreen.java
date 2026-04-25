@@ -100,7 +100,7 @@ public class LoginScreen implements Initializable {
     }
 
     private void loadStartScreen() {
-        loadScene("/com/oop/voyage/project_voyage/StartScreen.fxml");
+        loadScene("/com/oop/voyage/project_voyage/StartingScreen.fxml");
     }
 
     @FXML

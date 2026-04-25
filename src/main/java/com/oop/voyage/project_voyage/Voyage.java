@@ -23,7 +23,7 @@ public class Voyage extends Application {
 
         Scene scene = new Scene(loader.load(), screen.getWidth(), screen.getHeight());
         scene.getStylesheets().add(
-                Voyage.class.getResource("styles.css").toExternalForm());
+                Voyage.class.getResource("Styles.css").toExternalForm());
 
         stage.setTitle("Voyage – Your Travel Companion");
         stage.setScene(scene);
