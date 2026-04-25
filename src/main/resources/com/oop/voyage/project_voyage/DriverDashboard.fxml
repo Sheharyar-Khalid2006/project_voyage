@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<StackPane styleClass="login-root"
+           xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="com.oop.voyage.project_voyage.DriverDashboard">
+
+    <BorderPane maxWidth="Infinity" maxHeight="Infinity">
+        <top>
+            <HBox styleClass="top-bar" alignment="CENTER_LEFT" spacing="16">
+                <padding><Insets top="15" right="30" bottom="15" left="30"/></padding>
+                <Label text="🚘 Driver Dashboard" styleClass="top-logo"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Label fx:id="plateLabel" styleClass="field-label" text="---"/>
+            </HBox>
+        </top>
+
+        <center>
+            <ScrollPane fitToWidth="true" styleClass="login-root">
+                <VBox spacing="18" alignment="TOP_CENTER">
+                    <padding><Insets top="24" right="40" bottom="24" left="40"/></padding>
+                </VBox>
+            </ScrollPane>
+        </center>
+    </BorderPane>
+</StackPane>
