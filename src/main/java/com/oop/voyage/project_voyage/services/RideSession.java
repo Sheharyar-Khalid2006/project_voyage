@@ -75,4 +75,8 @@ public class RideSession {
         alarmService.cancelAll();
         passengers.clear();
     }
+
+    public List<Passenger> getPassengers() {
+        return passengers;
+    }
 }
