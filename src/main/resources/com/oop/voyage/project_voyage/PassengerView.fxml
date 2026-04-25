@@ -65,7 +65,31 @@
                             </VBox>
                         </HBox>
                         <!-- onConfirmDestination method still needs to be defined in .java file -->
-                        <Button text="Confirm Destination -&gt;" onAction="#onConfirmDestination"
+                        <Button text="Confirm Destination →" onAction="#onConfirmDestination"
+                                styleClass="continue-btn" maxWidth="Infinity"/>
+                    </VBox>
+
+                    <VBox styleClass="form-card" spacing="12">
+                        <padding><Insets top="16" right="24" bottom="16" left="24"/></padding>
+                        <Label text="⏰ Alarm Settings" styleClass="section-header"/>
+                        <Label fx:id="alarmStatusLabel" styleClass="form-subtitle"
+                               text="No alarm set." wrapText="true"/>
+
+                        <Label text="Set Timed Alarm (24h format)" styleClass="field-label"/>
+                        <HBox spacing="12" alignment="CENTER_LEFT">
+                            <TextField fx:id="alarmHrField" promptText="Hour e.g. 14"
+                                       prefWidth="140" styleClass="form-field"/>
+                            <Label text=":" styleClass="field-label"/>
+                            <TextField fx:id="alarmMinField" promptText="Min e.g. 30"
+                                       prefWidth="140" styleClass="form-field"/>
+                            <!-- onSetTimedAlarm method still needs to be defined in .java file -->
+                            <Button text="Set Alarm" onAction="#onSetTimedAlarm"
+                                    styleClass="card-btn"/>
+                        </HBox>
+
+                        <!-- onToggleProximityAlarm method still needs to be defined in .java file -->
+                        <Button text="Toggle Proximity Alarm ON/OFF"
+                                onAction="#onToggleProximityAlarm"
                                 styleClass="continue-btn" maxWidth="Infinity"/>
                     </VBox>
 

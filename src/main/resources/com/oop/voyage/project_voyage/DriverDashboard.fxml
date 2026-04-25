@@ -65,6 +65,32 @@
                                 styleClass="continue-btn" maxWidth="Infinity"/>
                     </VBox>
 
+                    <VBox styleClass="form-card" spacing="10">
+                        <padding><Insets top="16" right="24" bottom="16" left="24"/></padding>
+                        <Label text="👥 Onboard Passengers" styleClass="section-header"/>
+                        <ListView fx:id="paxList" prefHeight="120" styleClass="form-field"/>
+                        <!-- onAddTestPassenger method still needs to be defined in .java file -->
+                        <Button text="+ Simulate Passenger Boarding"
+                                onAction="#onAddTestPassenger"
+                                styleClass="card-btn" maxWidth="Infinity"/>
+                    </VBox>
+
+                    <VBox styleClass="form-card" spacing="10">
+                        <padding><Insets top="16" right="24" bottom="16" left="24"/></padding>
+                        <Label text="🔔 Notifications" styleClass="section-header"/>
+                        <Label fx:id="notifLabel" styleClass="form-subtitle" text="No alerts yet."
+                               wrapText="true"/>
+                        <HBox spacing="12">
+
+                            <!-- onWakePassengers method still needs to be defined in .java file -->
+                            <Button text="Wake All Passengers" onAction="#onWakePassengers"
+                                    styleClass="card-btn" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+                            <!-- on method still needs to be defined in .java file -->
+                            <Button text="End Ride" onAction="#onEndRide"
+                                    styleClass="back-btn" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+                        </HBox>
+                    </VBox>
+
                 </VBox>
             </ScrollPane>
         </center>
