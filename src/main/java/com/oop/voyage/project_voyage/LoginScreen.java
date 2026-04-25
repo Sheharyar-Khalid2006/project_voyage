@@ -1,5 +1,9 @@
 package com.oop.voyage.project_voyage;
 
+import com.oop.voyage.project_voyage.model.Driver;
+import com.oop.voyage.project_voyage.model.Passenger;
+import com.oop.voyage.project_voyage.model.Car;
+import com.oop.voyage.project_voyage.services.RideSession;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -14,10 +18,6 @@ import javafx.scene.layout.VBox;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import com.oop.voyage.project_voyage.model.Driver;
-import com.oop.voyage.project_voyage.model.Passenger;
-import com.oop.voyage.project_voyage.model.Car;
-import com.oop.voyage.project_voyage.services.RideSession;
 
 public class LoginScreen implements Initializable {
 
@@ -26,60 +26,24 @@ public class LoginScreen implements Initializable {
 
     public StackPane rootPane;
 
-    @FXML private VBox formCard;
-    @FXML private Label topBadgeLabel;
+    @FXML private VBox   formCard;
+    @FXML private Label  topBadgeLabel;
+    @FXML private Label  roleIconLabel;
+    @FXML private Label  roleTitleLabel;
+    @FXML private Label  roleSubtitleLabel;
+    @FXML private Label  errLabel;
 
-    //Labels
-    @FXML private Label roleIconLabel;
-    @FXML private Label roleTitleLabel;
-    @FXML private Label roleSubtitleLabel;
-
-    //Common Fields
-    @FXML private TextField cnicField;
-    @FXML private TextField phoneField;
-    @FXML private TextField gmailField;
-
-    @FXML private VBox driverSection;
+    @FXML private TextField        cnicField;
+    @FXML private TextField        phoneField;
+    @FXML private TextField        gmailField;
+    @FXML private VBox             driverSection;
     @FXML private ComboBox<String> carTypeCombo;
-    @FXML private TextField plateField;
+    @FXML private TextField        plateField;
 
     private String role;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        setupCarTypes();
-    }
-
-    public void initRole(String role) {
-        this.role = role;
-
-        if (ROLE_DRIVER.equals(role)) {
-            roleIconLabel.setText("🚘");
-            roleTitleLabel.setText("Driver Login");
-            roleSubtitleLabel.setText("Enter your details to start offering rides");
-            topBadgeLabel.setText("Voyage • Driver");
-            driverSection.setVisible(true);
-            driverSection.setManaged(true);
-        } else {
-            roleIconLabel.setText("");
-            Image passengerIcon = new Image(getClass().getResourceAsStream("/com/oop/voyage/project_voyage/passenger.png"));
-            ImageView imageView = new ImageView(passengerIcon);
-
-            // Adjust size to match your UI needs
-            imageView.setFitHeight(40);
-            imageView.setFitWidth(40);
-            imageView.setPreserveRatio(true);
-
-            roleIconLabel.setGraphic(imageView);
-            roleTitleLabel.setText("Passenger Login");
-            roleSubtitleLabel.setText("Enter your details to start booking rides");
-            topBadgeLabel.setText("Voyage • Passenger");
-            driverSection.setVisible(false);
-            driverSection.setManaged(false);
-        }
-    }
-
-    private void setupCarTypes() {
         carTypeCombo.getItems().addAll(
                 "Sedan / Toyota (5 seater)",
                 "SUV / Crossover (7 seater)",
@@ -90,58 +54,114 @@ public class LoginScreen implements Initializable {
         );
     }
 
-    public void loadScene(String fxmlPath) {
+    public void initRole(String r) {
+        this.role = r;
+        if (ROLE_DRIVER.equals(r)) {
+            roleIconLabel.setText("🚘");
+            roleTitleLabel.setText("Driver Login");
+            roleSubtitleLabel.setText("Enter your details to start offering rides");
+            topBadgeLabel.setText("Voyage • Driver");
+            driverSection.setVisible(true);
+            driverSection.setManaged(true);
+        } else {
+            Image img = new Image(getClass().getResourceAsStream(
+                    "/com/oop/voyage/project_voyage/passenger.png"));
+            ImageView iv = new ImageView(img);
+            iv.setFitHeight(40);
+            iv.setFitWidth(40);
+            iv.setPreserveRatio(true);
+            roleIconLabel.setText("");
+            roleIconLabel.setGraphic(iv);
+            roleTitleLabel.setText("Login");
+            roleSubtitleLabel.setText("Enter your details to book a ride");
+            topBadgeLabel.setText("Voyage • Passenger");
+            driverSection.setVisible(false);
+            driverSection.setManaged(false);
+        }
+    }
+
+    @FXML
+    private void onContinueClicked() {
+        String cnic  = cnicField.getText().trim();
+        String phone = phoneField.getText().trim();
+        String email = gmailField.getText().trim();
+
+        if (cnic.isEmpty() || phone.isEmpty()) {
+            showErr("CNIC and phone number are required.");
+            return;
+        }
+
+        if (ROLE_DRIVER.equals(role)) {
+            String carTyp = carTypeCombo.getValue();
+            String plt    = plateField.getText().trim().toUpperCase();
+            if (carTyp == null || plt.isEmpty()) {
+                showErr("Please select a car type and enter plate number.");
+                return;
+            }
+            Driver  drv  = new Driver(cnic, phone, email, carTyp, plt);
+            Car     car  = new Car(carTyp, plt);
+            RideSession ses = new RideSession(drv, car);
+            loadDriverDashboard(ses);
+        } else {
+            Passenger pax = new Passenger(cnic, phone, email);
+            loadPassengerView(pax);
+        }
+    }
+
+    private void showErr(String msg) {
+        if (errLabel != null) {
+            errLabel.setText(msg);
+            errLabel.setVisible(true);
+        }
+    }
+
+    private void loadDriverDashboard(RideSession ses) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
-            Scene scene = new Scene(loader.load());
-            scene.getStylesheets().add(
-                    getClass().getResource("/com/oop/voyage/project_voyage/Styles.css")
-                            .toExternalForm());
-            Voyage.primaryStage.setScene(scene);
+            FXMLLoader ldr = new FXMLLoader(getClass().getResource(
+                    "/com/oop/voyage/project_voyage/DriverDashboard.fxml"));
+            Scene sc = new Scene(ldr.load(),
+                    Voyage.primaryStage.getWidth(),
+                    Voyage.primaryStage.getHeight());
+            sc.getStylesheets().add(getClass().getResource(
+                    "/com/oop/voyage/project_voyage/Styles.css").toExternalForm());
+            DriverDashboard ctrl = ldr.getController();
+            ctrl.initSession(ses);
+            Voyage.primaryStage.setScene(sc);
         } catch (IOException ex) {
             ex.printStackTrace();
         }
     }
 
-    private void loadStartScreen() {
-        loadScene("/com/oop/voyage/project_voyage/StartingScreen.fxml");
+    private void loadPassengerView(Passenger pax) {
+        try {
+            FXMLLoader ldr = new FXMLLoader(getClass().getResource(
+                    "/com/oop/voyage/project_voyage/PassengerView.fxml"));
+            Scene sc = new Scene(ldr.load(),
+                    Voyage.primaryStage.getWidth(),
+                    Voyage.primaryStage.getHeight());
+            sc.getStylesheets().add(getClass().getResource(
+                    "/com/oop/voyage/project_voyage/Styles.css").toExternalForm());
+            PassengerView ctrl = ldr.getController();
+            ctrl.initPassenger(pax);
+            Voyage.primaryStage.setScene(sc);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 
     @FXML
     private void onBackClicked() {
-        loadStartScreen();
-    }
-
-        @FXML
-        @FXML
-        private void onContinueClicked() {
-            String cnic  = cnicField.getText().trim();
-            String phone = phoneField.getText().trim();
-            String email = gmailField.getText().trim();
-
-            if (cnic.isEmpty() || phone.isEmpty()) {
-                // TODO: show error label (your partner adds the Label in FXML)
-                System.out.println("CNIC and Phone are required.");
-                return;
-            }
-
-            if (ROLE_DRIVER.equals(role)) {
-                String carType = carTypeCombo.getValue();
-                String plate   = plateField.getText().trim().toUpperCase();
-                if (carType == null || plate.isEmpty()) {
-                    System.out.println("Car type and plate are required.");
-                    return;
-                }
-                Driver driver = new Driver(cnic, phone, email, carType, plate);
-                Car    car    = new Car(carType, plate);
-                RideSession session = new RideSession(driver, car);
-                // TODO: load DriverDashboard.fxml and pass session to its controller
-                System.out.println("Driver ready. Seats: " + session.getAvailableSeats());
-
-            } else {
-                Passenger passenger = new Passenger(cnic, phone, email);
-                // TODO: load PassengerView.fxml and pass passenger to its controller
-                System.out.println("Passenger ready: " + passenger.getPublicInfo());
-            }
+        try {
+            FXMLLoader ldr = new FXMLLoader(getClass().getResource(
+                    "/com/oop/voyage/project_voyage/StartingScreen.fxml"));
+            Scene sc = new Scene(ldr.load(),
+                    Voyage.primaryStage.getWidth(),
+                    Voyage.primaryStage.getHeight());
+            sc.getStylesheets().add(getClass().getResource(
+                    "/com/oop/voyage/project_voyage/Styles.css").toExternalForm());
+            Voyage.primaryStage.setScene(sc);
+        } catch (IOException ex) {
+            ex.printStackTrace();
         }
+    }
 }
