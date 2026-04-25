@@ -25,6 +25,30 @@
                 <VBox spacing="18" alignment="TOP_CENTER">
                     <padding><Insets top="24" right="40" bottom="24" left="40"/></padding>
 
+                    <VBox styleClass="form-card" alignment="CENTER">
+                        <padding><Insets top="16" right="24" bottom="16" left="24"/></padding>
+                        <Label fx:id="statusLabel" styleClass="form-role-title"
+                               text="Setting up..." wrapText="true"/>
+                    </VBox>
+
+                    <HBox spacing="20" alignment="CENTER">
+                        <VBox styleClass="form-card" spacing="8" HBox.hgrow="ALWAYS">
+                            <padding><Insets top="16" right="24" bottom="16" left="24"/></padding>
+                            <Label text="Estimated Fare" styleClass="field-label"/>
+                            <Label fx:id="fareLabel" styleClass="section-header" text="PKR --"/>
+                        </VBox>
+                        <VBox styleClass="form-card" spacing="8" HBox.hgrow="ALWAYS">
+                            <padding><Insets top="16" right="24" bottom="16" left="24"/></padding>
+                            <Label text="Distance / ETA" styleClass="field-label"/>
+                            <Label fx:id="etaLabel" styleClass="section-header" text="---"/>
+                        </VBox>
+                        <VBox styleClass="form-card" spacing="8" HBox.hgrow="ALWAYS">
+                            <padding><Insets top="16" right="24" bottom="16" left="24"/></padding>
+                            <Label text="Seats in Vehicle" styleClass="field-label"/>
+                            <Label fx:id="seatsLabel" styleClass="section-header" text="--"/>
+                        </VBox>
+                    </HBox>
+
                 </VBox>
             </ScrollPane>
         </center>

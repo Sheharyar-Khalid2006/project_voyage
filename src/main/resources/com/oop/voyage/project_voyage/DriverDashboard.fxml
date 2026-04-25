@@ -21,6 +21,30 @@
             <ScrollPane fitToWidth="true" styleClass="login-root">
                 <VBox spacing="18" alignment="TOP_CENTER">
                     <padding><Insets top="24" right="40" bottom="24" left="40"/></padding>
+
+                    <HBox spacing="20" alignment="CENTER">
+                        <VBox styleClass="form-card" spacing="8" HBox.hgrow="ALWAYS">
+                            <padding><Insets top="16" right="24" bottom="16" left="24"/></padding>
+                            <Label text="Vehicle Type" styleClass="field-label"/>
+                            <Label fx:id="carTypLabel" styleClass="form-role-title" text="---"/>
+                        </VBox>
+                        <VBox styleClass="form-card" spacing="8" HBox.hgrow="ALWAYS">
+                            <padding><Insets top="16" right="24" bottom="16" left="24"/></padding>
+                            <Label text="Seats Available" styleClass="field-label"/>
+                            <Label fx:id="seatsLabel" styleClass="form-role-title" text="--"/>
+                        </VBox>
+                        <VBox styleClass="form-card" spacing="8" HBox.hgrow="ALWAYS">
+                            <padding><Insets top="16" right="24" bottom="16" left="24"/></padding>
+                            <Label text="ETA to Destination" styleClass="field-label"/>
+                            <Label fx:id="etaLabel" styleClass="form-role-title" text="---"/>
+                        </VBox>
+                        <VBox styleClass="form-card" spacing="8" HBox.hgrow="ALWAYS">
+                            <padding><Insets top="16" right="24" bottom="16" left="24"/></padding>
+                            <Label text="Est. Fare" styleClass="field-label"/>
+                            <Label fx:id="fareLabel" styleClass="form-role-title" text="PKR --"/>
+                        </VBox>
+                    </HBox>
+
                 </VBox>
             </ScrollPane>
         </center>
