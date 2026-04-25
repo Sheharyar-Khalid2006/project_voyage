@@ -14,6 +14,10 @@ import javafx.scene.layout.VBox;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import com.oop.voyage.project_voyage.model.Driver;
+import com.oop.voyage.project_voyage.model.Passenger;
+import com.oop.voyage.project_voyage.model.Car;
+import com.oop.voyage.project_voyage.services.RideSession;
 
 public class LoginScreen implements Initializable {
 
@@ -109,19 +113,35 @@ public class LoginScreen implements Initializable {
     }
 
         @FXML
-    private void onContinueClicked() {
+        @FXML
+        private void onContinueClicked() {
             String cnic  = cnicField.getText().trim();
             String phone = phoneField.getText().trim();
-            String gmail = gmailField.getText().trim();
+            String email = gmailField.getText().trim();
+
+            if (cnic.isEmpty() || phone.isEmpty()) {
+                // TODO: show error label (your partner adds the Label in FXML)
+                System.out.println("CNIC and Phone are required.");
+                return;
+            }
 
             if (ROLE_DRIVER.equals(role)) {
                 String carType = carTypeCombo.getValue();
                 String plate   = plateField.getText().trim().toUpperCase();
-                System.out.printf("[DRIVER]  cnic=%s  phone=%s  gmail=%s  car=%s  plate=%s%n",
-                        cnic, phone, gmail, carType, plate);
+                if (carType == null || plate.isEmpty()) {
+                    System.out.println("Car type and plate are required.");
+                    return;
+                }
+                Driver driver = new Driver(cnic, phone, email, carType, plate);
+                Car    car    = new Car(carType, plate);
+                RideSession session = new RideSession(driver, car);
+                // TODO: load DriverDashboard.fxml and pass session to its controller
+                System.out.println("Driver ready. Seats: " + session.getAvailableSeats());
+
             } else {
-                System.out.printf("[PASSENGER]  cnic=%s  phone=%s  gmail=%s%n",
-                        cnic, phone, gmail);
+                Passenger passenger = new Passenger(cnic, phone, email);
+                // TODO: load PassengerView.fxml and pass passenger to its controller
+                System.out.println("Passenger ready: " + passenger.getPublicInfo());
             }
-    }
+        }
 }
