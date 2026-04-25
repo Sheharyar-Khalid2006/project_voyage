@@ -2,16 +2,18 @@ package com.oop.voyage.project_voyage.model;
 
 import com.oop.voyage.project_voyage.interfaces.Notifiable;
 import com.oop.voyage.project_voyage.interfaces.LocationObserver;
+import com.oop.voyage.project_voyage.services.ProximityEngine;
 
 public class Passenger extends User implements Notifiable, LocationObserver {
-    private double pickupLat;
-    private double pickupLng;
-    private double destinationLat;
-    private double destinationLng;
+
+    private double  pickupLat;
+    private double  pickupLng;
+    private double  destLat;
+    private double  destLng;
     private boolean isBoarded;
     private boolean alarmEnabled;
-    private int     timedAlarmHour;   // 24h time format
-    private int     timedAlarmMinute;
+    private int     alarmHr;
+    private int     alarmMin;
 
     public Passenger(String cnic, String phone, String email) {
         super(cnic, phone, email);
@@ -19,30 +21,28 @@ public class Passenger extends User implements Notifiable, LocationObserver {
         this.isBoarded    = false;
     }
 
-    @Override public String getRole() { return "PASSENGER"; }
-
-    // Called by ProximityEngine when vehicle location updates
     @Override
-    public void onLocationUpdate(double vehicleLat, double vehicleLng) {
+    public String getRole()
+        { return "PASSENGER"; }
+
+    @Override
+    public void onLocationUpdate(double vLat, double vLng) {
         if (!isBoarded || !alarmEnabled) return;
-        double dist = ProximityEngine.haversineDistance(
-                vehicleLat, vehicleLng, destinationLat, destinationLng);
-        if (dist <= 500) {  // within 500 metres
-            receiveNotification("Proximity Alert: You are " +(int) dist +
-                    "m from your destination!");
+        double dist = ProximityEngine.haversineDistance(vLat, vLng, destLat, destLng);
+        if (dist <= 500) {
+            receiveNotification("Proximity Alert: You are " + (int) dist + "m from your destination!");
         }
     }
 
     @Override
-    public void receiveNotification(String message) {
-        System.out.println("[PASSENGER ALERT] " + getCnic() + ": " + message);
+    public void receiveNotification(String msg) {
+        System.out.println("[PASSENGER ALERT] " + getCnic() + ": " + msg);
     }
 
-    // Getters and Setters method
     public double  getDestinationLat()
-        { return destinationLat; }
+        { return destLat; }
     public double  getDestinationLng()
-        { return destinationLng; }
+        { return destLng; }
     public boolean isBoarded()
         { return isBoarded; }
     public boolean isAlarmEnabled()
@@ -54,17 +54,14 @@ public class Passenger extends User implements Notifiable, LocationObserver {
     public void    setPickup(double lat, double lng)
         { this.pickupLat = lat; this.pickupLng = lng; }
     public void    setDestination(double lat, double lng)
-        { this.destinationLat = lat; this.destinationLng = lng; }
-    public void    setTimedAlarm(int hour, int minute) {
-        this.timedAlarmHour   = hour;
-        this.timedAlarmMinute = minute;
-    }
-    public int getTimedAlarmHour()
-        { return timedAlarmHour; }
-    public int getTimedAlarmMinute()
-        { return timedAlarmMinute; }
+        { this.destLat = lat; this.destLng = lng; }
+    public void    setTimedAlarm(int hr, int min)
+        { this.alarmHr = hr; this.alarmMin = min; }
+    public int     getTimedAlarmHour()
+        { return alarmHr; }
+    public int     getTimedAlarmMinute()
+        { return alarmMin; }
 
-    // Hiding sensitive info of passenger from driver (this is what the driver sees)
     public String getPublicInfo() {
         return "Passenger | Pickup: (" + String.format("%.4f", pickupLat) +
                 ", " + String.format("%.4f", pickupLng) + ")";
