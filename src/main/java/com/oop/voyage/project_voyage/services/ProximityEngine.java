@@ -13,7 +13,7 @@ public class ProximityEngine {
     // Haversine formula — real distance between 2 GPS coordinates in METRES
     public static double haversineDistance(double lat1, double lng1,
                                            double lat2, double lng2) {
-        final double R = 6371000; // Earth radius in metres as const
+        final double R = 6371000;
         double dLat = Math.toRadians(lat2 - lat1);
         double dLng = Math.toRadians(lng2 - lng1);
         // Implementation of proposed proximity detection radius by equation
@@ -22,23 +22,18 @@ public class ProximityEngine {
                 * Math.sin(dLng / 2) * Math.sin(dLng / 2);
         return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     }
-    // Passengers looking for a vehicle added to proximity radius
-    public void subscribe(LocationObserver observer) {
-        observers.add(observer);
-    }
 
-    public void unsubscribe(LocationObserver observer) {
-        observers.remove(observer);
-    }
+    public void subscribe(LocationObserver obs)   { observers.add(obs); }
+    public void unsubscribe(LocationObserver obs) { observers.remove(obs); }
 
     // Location Updater for vehicle (can be run to refresh and check vehicle location)
     public void updateVehicleLocation(double lat, double lng) {
         this.vehicleLat = lat;
         this.vehicleLng = lng;
-        notifyAll(lat, lng);
+        notifyObservers(lat, lng);
     }
 
-    private void notifyAll(double lat, double lng) {
+    private void notifyObservers(double lat, double lng) {
         for (LocationObserver o : observers) {
             o.onLocationUpdate(lat, lng);
         }

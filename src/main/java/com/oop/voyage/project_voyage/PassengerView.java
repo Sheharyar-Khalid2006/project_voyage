@@ -4,8 +4,12 @@ import com.oop.voyage.project_voyage.model.Passenger;
 import com.oop.voyage.project_voyage.services.AlarmService;
 import com.oop.voyage.project_voyage.services.FareCalculator;
 import com.oop.voyage.project_voyage.services.ProximityEngine;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import java.net.URL;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -26,11 +30,10 @@ public class PassengerView implements Initializable {
     @FXML private TextField alarmHrField;
     @FXML private TextField alarmMinField;
 
-    private Passenger      pax;
-    private AlarmService   alarmSvc;
-    private boolean        proximAlarmFired = false;
+    private Passenger    pax;
+    private AlarmService alarmSvc;
+    private boolean      proximAlarmFired = false;
 
-    // simulated vehicle position
     private double vehLat = 33.1450;
     private double vehLng = 73.7510;
 
@@ -42,6 +45,30 @@ public class PassengerView implements Initializable {
     public void initPassenger(Passenger p) {
         this.pax = p;
         statusLabel.setText("Welcome! Set your destination below.");
+        seatsLabel.setText("--");
+
+        // Hook passenger notifications into the UI label
+        p.setNotificationCallback(msg ->
+                Platform.runLater(() -> showAlarmBanner(msg)));
+    }
+
+    private void showAlarmBanner(String msg) {
+        statusLabel.setText(msg);
+        statusLabel.setStyle("-fx-text-fill: #ff4444; -fx-font-weight: bold;");
+        alarmStatusLabel.setText(msg);
+
+        try {
+            URL audioUrl = getClass().getResource("alarm.mp3");
+            if (audioUrl != null) {
+                Media media = new Media(audioUrl.toExternalForm());
+                MediaPlayer mediaPlayer = new MediaPlayer(media);
+                mediaPlayer.play();
+            } else {
+                System.err.println("Could not locate alarm.mp3 in the resources folder.");
+            }
+        } catch (Exception e) {
+            System.err.println("Error playing alarm audio: " + e.getMessage());
+        }
     }
 
     @FXML
@@ -52,8 +79,8 @@ public class PassengerView implements Initializable {
             pax.setDestination(dLat, dLng);
             pax.setBoarded(true);
 
-            double fare = FareCalculator.calculateFare(vehLat, vehLng, dLat, dLng,
-                    "Sedan / Toyota (5 seater)");
+            double fare = FareCalculator.calculateFare(
+                    vehLat, vehLng, dLat, dLng, "Sedan / Toyota (5 seater)");
             fareLabel.setText("Estimated fare: " + FareCalculator.formatFare(fare));
 
             double etaSecs = ProximityEngine.estimateETA(vehLat, vehLng, dLat, dLng, 40);
@@ -62,6 +89,7 @@ public class PassengerView implements Initializable {
 
             startProximityCheck(dLat, dLng);
             statusLabel.setText("Ride booked! Proximity alarm is active.");
+            statusLabel.setStyle("");
         } catch (NumberFormatException ex) {
             statusLabel.setText("Please enter valid coordinates.");
         }
@@ -72,6 +100,10 @@ public class PassengerView implements Initializable {
         try {
             int hr  = Integer.parseInt(alarmHrField.getText().trim());
             int min = Integer.parseInt(alarmMinField.getText().trim());
+            if (hr < 0 || hr > 23 || min < 0 || min > 59) {
+                alarmStatusLabel.setText("Enter a valid time (0-23 for hour, 0-59 for minute).");
+                return;
+            }
             pax.setTimedAlarm(hr, min);
             alarmSvc.setTimedAlarm(pax, hr, min, "Time to get off soon!");
             alarmStatusLabel.setText("Timed alarm set for " + hr + ":" +
@@ -99,8 +131,7 @@ public class PassengerView implements Initializable {
 
             if (!proximAlarmFired && dist <= 500) {
                 proximAlarmFired = true;
-                statusLabel.setText("🔔 WAKE UP! You are " + (int)dist + "m from your stop!");
-                statusLabel.setStyle("-fx-text-fill: #ff4444; -fx-font-weight: bold;");
+                showAlarmBanner("WAKE UP! You are " + (int) dist + "m from your stop!");
             }
         }));
         tl.setCycleCount(Timeline.INDEFINITE);
