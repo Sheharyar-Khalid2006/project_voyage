@@ -1,6 +1,7 @@
 package com.oop.voyage.project_voyage.services;
 
 import com.oop.voyage.project_voyage.interfaces.Notifiable;
+import javafx.application.Platform;
 import java.time.LocalTime;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -9,33 +10,30 @@ public class AlarmService {
 
     private Timer timer;
 
-    // Time-based alarm at a specific LocalTime
-    public void setTimedAlarm(Notifiable target, int hour, int minute, String message) {
+    public void setTimedAlarm(Notifiable target, int hour, int minute, String msg) {
         if (timer != null) timer.cancel();
-        timer = new Timer(true); // daemon thread
-
+        timer = new Timer(true);
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
                 LocalTime now = LocalTime.now();
                 if (now.getHour() == hour && now.getMinute() == minute) {
-                    target.receiveNotification("Timed Alarm: " + message);
-                    cancel(); // run alarm once
+                    Platform.runLater(() ->
+                            target.receiveNotification("Timed Alarm: " + msg));
+                    cancelAll();
                 }
             }
-        }, 0, 30_000); // check at every 30 seconds delayed time
+        }, 0, 1000);
     }
 
-    // Proximity alarm runs when distance drops below threshold metres
-    public static boolean checkProximityAlarm(double vehicleLat, double vehicleLng,
-                                              double destLat,    double destLng,
-                                              double thresholdMetres,
+    public static boolean checkProximityAlarm(double vLat, double vLng,
+                                              double dLat, double dLng,
+                                              double threshMetres,
                                               Notifiable target) {
-        double dist = ProximityEngine.haversineDistance(
-                vehicleLat, vehicleLng, destLat, destLng);
-        if (dist <= thresholdMetres) {
-            target.receiveNotification(
-                    "Wake Up! You are " + (int) dist + "meters from your destination.");
+        double dist = ProximityEngine.haversineDistance(vLat, vLng, dLat, dLng);
+        if (dist <= threshMetres) {
+            Platform.runLater(() ->
+                    target.receiveNotification("Wake Up! You are " + (int) dist + "m from your destination."));
             return true;
         }
         return false;
