@@ -1,24 +1,22 @@
 Voyage 🚗
-Welcome to the repository for Voyage, a ride management and passenger notification system. This was built as our final project for the CS 212: Object-Oriented Programming course (Class BESE-16B).
+Greetings! This is an entry point to the Voyage repository. This is a ride management program that sends alerts/notifications to passengers regarding when they will reach their destination. In this way, we have developed our final project for the CS212 Object Oriented Programming course (BESE-16B) taken by the two of us.
 
-Have you ever fallen asleep on a bus or a long car ride and completely missed your stop? That is the exact problem we wanted to solve. Voyage uses a simulated GPS proximity system and timed alarms to wake passengers up right before they reach their destination.
+Have you ever fallen asleep on the bus/van, etc. and missed your destination? That was the problem that we tried to solve with Voyange. Voyage will provide you with an alarm before arriving at your destination, using a simulated GPS proximity system and a timed alarm.
 
 🛠️ The Team
-Sheharyar Khalid: Built the entire front-end using JavaFX and FXML. Handled the animated starting screens, role-based login forms, driver/passenger dashboards, and real-time UI updates.
+Sheharyar Khalid - Front-end Developer. Built the front end completely using JavaFX and FXML. Responsible for creating:
 
-Muhammad Faizan Asif: Handled the core application logic. Built the OOP model layer, interface contracts, and the background services (ProximityEngine, FareCalculator, AlarmService, RideSession).
+- The Startup Screens (Animated).
+- The Login Forms (By Role).
+- The Dashboard displays for Drivers & Passengers.
+- Updating the User Interface.
+
+Muhammad Faizan Asif - Core Programming Developer. Developed the OOP Model Layer, the Interface contracts and the background services (ProximityEngine, FareCalculator, AlarmService, RideSession).
 
 ✨ Features
-Role-Based Dashboards: Distinct views for Drivers and Passengers. The login screen checks formatting for CNICs, phone numbers, and emails before letting you in.
+Customized Dashboards for Drivers and Passengers Based on Role. The Login Page will check the formatting for CNIC, Phone Numbers and Emails before you will be able to log in to the Application.
 
-Simulated GPS & Fares: Since we couldn't use a live API, we simulated vehicle movement using a JavaFX Timeline. The app uses the Haversine formula to calculate the remaining distance, update the ETA, and calculate dynamic fares.
-
-Proximity & Time Alarms: When the vehicle gets within 500 meters of a passenger's set destination, an audio alarm plays to wake them up. Passengers can also set backup time-based alarms.
-
-Ride Management: Drivers can see the vehicle's capacity, add passengers, and even trigger a manual "wake alert" to all passengers at once.
-
-Smooth UI: Clean scene transitions between the different windows to keep the driver and passenger experiences separated but linked under the hood.
-
+Simulated GPS System Use & Fare Based on Haversine Formula. As we were unable to set up the actual working API for GPS, we simulated our GPS Events using JavaFX Timeline. We used the Haversine Formula for calculating distance to the destination.
 💻 Tech Stack & Setup
 Language: Java 23 (Bellsoft Liberica JDK)
 
