@@ -3,17 +3,19 @@ package com.oop.voyage.project_voyage.model;
 import com.oop.voyage.project_voyage.interfaces.Notifiable;
 import com.oop.voyage.project_voyage.interfaces.LocationObserver;
 import com.oop.voyage.project_voyage.services.ProximityEngine;
+import java.util.function.Consumer;
 
 public class Passenger extends User implements Notifiable, LocationObserver {
 
-    private double  pickupLat;
-    private double  pickupLng;
-    private double  destLat;
-    private double  destLng;
-    private boolean isBoarded;
-    private boolean alarmEnabled;
-    private int     alarmHr;
-    private int     alarmMin;
+    private double   pickupLat;
+    private double   pickupLng;
+    private double   destLat;
+    private double   destLng;
+    private boolean  isBoarded;
+    private boolean  alarmEnabled;
+    private int      alarmHr;
+    private int      alarmMin;
+    private Consumer<String> notifCallback;
 
     public Passenger(String cnic, String phone, String email) {
         super(cnic, phone, email);
@@ -22,8 +24,11 @@ public class Passenger extends User implements Notifiable, LocationObserver {
     }
 
     @Override
-    public String getRole()
-        { return "PASSENGER"; }
+    public String getRole() { return "PASSENGER"; }
+
+    public void setNotificationCallback(Consumer<String> cb) {
+        this.notifCallback = cb;
+    }
 
     @Override
     public void onLocationUpdate(double vLat, double vLng) {
@@ -37,6 +42,7 @@ public class Passenger extends User implements Notifiable, LocationObserver {
     @Override
     public void receiveNotification(String msg) {
         System.out.println("[PASSENGER ALERT] " + getCnic() + ": " + msg);
+        if (notifCallback != null) notifCallback.accept(msg);
     }
 
     public double  getDestinationLat()
