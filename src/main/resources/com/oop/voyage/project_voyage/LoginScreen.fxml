@@ -64,7 +64,7 @@
                         <TextField fx:id="plateField" promptText="e.g. ABC-123" styleClass="form-field plate-field" />
                     </VBox>
 
-                    <Button maxWidth="Infinity" onAction="#onContinueClicked" styleClass="continue-btn" text="Continue -&gt;">
+                    <Button fx:id="continueBtn" maxWidth="Infinity" onAction="#onContinueClicked" styleClass="continue-btn" text="Continue -&gt;">
                         <VBox.margin><Insets bottom="5" top="5" /></VBox.margin>
                     </Button>
                 </VBox>

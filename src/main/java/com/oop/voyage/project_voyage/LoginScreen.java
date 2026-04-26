@@ -15,6 +15,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.control.Button;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -33,12 +34,13 @@ public class LoginScreen implements Initializable {
     @FXML private Label  roleSubtitleLabel;
     @FXML private Label  errLabel;
 
-    @FXML private TextField        cnicField;
-    @FXML private TextField        phoneField;
-    @FXML private TextField        gmailField;
-    @FXML private VBox             driverSection;
+    @FXML private TextField cnicField;
+    @FXML private TextField phoneField;
+    @FXML private TextField gmailField;
+    @FXML private VBox driverSection;
     @FXML private ComboBox<String> carTypeCombo;
-    @FXML private TextField        plateField;
+    @FXML private TextField plateField;
+    @FXML private Button continueBtn;
 
     private String role;
 
@@ -52,6 +54,12 @@ public class LoginScreen implements Initializable {
                 "Motorcycle",
                 "DoubleDecker Bus"
         );
+
+        cnicField.textProperty().addListener((obs, old, val) -> validate());
+        phoneField.textProperty().addListener((obs, old, val) -> validate());
+        gmailField.textProperty().addListener((obs, old, val) -> validate());
+
+        validate();
     }
 
     public void initRole(String r) {
@@ -100,12 +108,28 @@ public class LoginScreen implements Initializable {
             }
             Driver  drv  = new Driver(cnic, phone, email, carTyp, plt);
             Car     car  = new Car(carTyp, plt);
-            RideSession ses = new RideSession(drv, car);
-            loadDriverDashboard(ses);
+            RideSession rs = new RideSession(drv, car);
+            loadDriverDashboard(rs);
         } else {
             Passenger pax = new Passenger(cnic, phone, email);
             loadPassengerView(pax);
         }
+    }
+
+    private void validate() {
+        String cnic  = cnicField.getText().trim();
+        String phone = phoneField.getText().trim();
+        String gmail = gmailField.getText().trim();
+
+        boolean cnicOk  = cnic.matches("^\\d{5}-\\d{7}-\\d{1}$");
+        boolean phoneOk = phone.matches("^03\\d{2}-\\d{7}$");
+        boolean gmailOk = gmail.isEmpty() || gmail.matches("^[\\w._%+\\-]+@[\\w.\\-]+\\.[a-zA-Z]{2,}$");
+
+        cnicField.setStyle(cnic.isEmpty()  ? "" : cnicOk  ? "" : "-fx-border-color: red; -fx-border-width: 2px;");
+        phoneField.setStyle(phone.isEmpty() ? "" : phoneOk ? "" : "-fx-border-color: red; -fx-border-width: 2px;");
+        gmailField.setStyle(gmail.isEmpty() ? "" : gmailOk ? "" : "-fx-border-color: red; -fx-border-width: 2px;");
+
+        continueBtn.setDisable(!(cnicOk && phoneOk && gmailOk));
     }
 
     private void showErr(String msg) {
